@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         // process show method in questioncontroller to 
         // accept slug instead of id
         Route::bind('slug',function($slug){
-            return Question::where('slug',$slug)->first() ?? abort(404);
+            return Question::with('answers.user')->where('slug',$slug)->first() ?? abort(404);
         });
 
         parent::boot();

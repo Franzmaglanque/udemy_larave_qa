@@ -41,4 +41,12 @@ class User extends Authenticatable
     public function answers(){
         return $this->hasMany(Question::class);
     }
+
+    public function getAvatarAttribute(){
+        $email = $this->email;
+        $size = 40;
+
+        return $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?s=" . $size;
+
+    }
 }
